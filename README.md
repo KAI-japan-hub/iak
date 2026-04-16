@@ -1,2 +1,3 @@
 # iak
-A memo app with reminder functionality that allows you to set a specific date and time
+
+By redeveloping the ls command and adding color coding, file information can be displayed more clearly and intuitively.
