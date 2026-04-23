@@ -10,6 +10,7 @@ When there are many files, it can be difficult to distinguish them at a glance.
 This project redevelops the ls command to improve file readability. By adding color coding, it helps users identify file types more quickly and intuitively.
 
 # Usage
+```bash
 Usage:
   iak [FILE]
   iak -l [OPTIONS] [FILE]
