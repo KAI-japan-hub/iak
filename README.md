@@ -6,5 +6,5 @@ By redeveloping the ls command and adding color coding, file information can be 
 # Background
 As long as you have a lot of files, it happens to make you confuse.
 
-#Overview
+# Overview
 This project redevelops the ls command to improve file readability. By adding color coding, it helps users identify file types more quickly and intuitively.
