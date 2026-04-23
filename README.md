@@ -3,7 +3,7 @@ A color-coded ls for clearer file display.
 
 By redeveloping the ls command and adding color coding, file information can be displayed more clearly and intuitively.
 
-#Background
+# Background
 As long as you have a lot of files, it happens to make you confuse.
 
 #Overview
