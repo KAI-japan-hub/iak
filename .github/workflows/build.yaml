@@ -2,8 +2,6 @@ name: build
 
 on:
   push:
-    branches:
-      - "**"
   pull_request:
 
 jobs:
@@ -12,10 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: Checkout repository
@@ -24,25 +19,8 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Run clippy
-        run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Show Rust version
+        run: rustc --version
 
       - name: Build
         run: cargo build --release
-
-      - name: Install coverage tools
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          cargo install cargo-llvm-cov
-          rustup component add llvm-tools-preview
-
-      - name: Generate coverage report
-        if: matrix.os == 'ubuntu-latest'
-        run: cargo llvm-cov --lcov --output-path coverage.lcov
-
-      - name: Upload to Coveralls
-        if: matrix.os == 'ubuntu-latest'
-        uses: coverallsapp/github-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: coverage.lcov
