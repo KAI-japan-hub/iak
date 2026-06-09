@@ -47,3 +47,58 @@ pub fn format_entry(entry: &FileEntry) -> String {
 pub fn format_entries(entries: &[FileEntry]) -> Vec<String> {
     entries.iter().map(format_entry).collect()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::PathBuf;
+    use chrono::Local;
+
+    fn make_entry(name: &str, kind: FileKind, size: u64) -> FileEntry {
+        FileEntry {
+            path: PathBuf::from(name),
+            name: name.to_string(),
+            kind,
+            size,
+            modified: Local::now(),
+        }
+    }
+
+    #[test]
+    fn test_format_size_bytes() {
+        let entry = make_entry("file.txt", FileKind::Other, 512);
+        let result = format_entry(&entry);
+        assert!(result.contains("512B"));
+    }
+
+    #[test]
+    fn test_format_size_kilobytes() {
+        let entry = make_entry("file.txt", FileKind::Other, 2048);
+        let result = format_entry(&entry);
+        assert!(result.contains("K"));
+    }
+
+    #[test]
+    fn test_format_size_megabytes() {
+        let entry = make_entry("file.txt", FileKind::Other, 2 * 1024 * 1024);
+        let result = format_entry(&entry);
+        assert!(result.contains("M"));
+    }
+
+    #[test]
+    fn test_format_entry_contains_name() {
+        let entry = make_entry("README.md", FileKind::Markdown, 100);
+        let result = format_entry(&entry);
+        assert!(result.contains("README.md"));
+    }
+
+    #[test]
+    fn test_format_entries_count() {
+        let entries = vec![
+            make_entry("a.rs", FileKind::Rust, 100),
+            make_entry("b.md", FileKind::Markdown, 200),
+        ];
+        let lines = format_entries(&entries);
+        assert_eq!(lines.len(), 2);
+    }
+}

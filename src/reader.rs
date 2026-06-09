@@ -44,3 +44,38 @@ pub fn read_entries(dir: &Path) -> std::io::Result<Vec<FileEntry>> {
     entries.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(entries)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_detect_kind_directory() {
+        assert_eq!(detect_kind("src", true), FileKind::Directory);
+    }
+
+    #[test]
+    fn test_detect_kind_markdown() {
+        assert_eq!(detect_kind("README.md", false), FileKind::Markdown);
+    }
+
+    #[test]
+    fn test_detect_kind_pdf() {
+        assert_eq!(detect_kind("report.pdf", false), FileKind::Pdf);
+    }
+
+    #[test]
+    fn test_detect_kind_rust() {
+        assert_eq!(detect_kind("main.rs", false), FileKind::Rust);
+    }
+
+    #[test]
+    fn test_detect_kind_toml() {
+        assert_eq!(detect_kind("Cargo.toml", false), FileKind::Toml);
+    }
+
+    #[test]
+    fn test_detect_kind_other() {
+        assert_eq!(detect_kind("image.png", false), FileKind::Other);
+    }
+}
