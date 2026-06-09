@@ -1,1 +1,16 @@
+[package]
+name = "iak"
+version = "0.1.0"
+edition = "2021"
 
+[[bin]]
+name = "iak"
+path = "src/cli/main.rs"
+
+[lib]
+name = "iak"
+path = "src/lib.rs"
+
+[dependencies]
+colored = "2"
+chrono = "0.4"
