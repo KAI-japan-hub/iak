@@ -1,7 +1,7 @@
 //! iak CLI エントリポイント
 
-use std::path::Path;
 use iak::{display, reader};
+use std::path::Path;
 
 fn main() {
     let dir = Path::new(".");

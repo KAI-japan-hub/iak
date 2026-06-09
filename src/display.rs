@@ -1,18 +1,18 @@
 //! ファイルエントリの表示処理
 
-use colored::Colorize;
-use chrono::Local;
 use crate::entry::{FileEntry, FileKind};
+use chrono::Local;
+use colored::Colorize;
 
 /// FileKindに応じた色付きのファイル名文字列を返す
 fn colorize_name(entry: &FileEntry) -> String {
     match entry.kind {
         FileKind::Directory => entry.name.bold().blue().to_string(),
-        FileKind::Markdown  => entry.name.bold().green().to_string(),
-        FileKind::Pdf       => entry.name.red().to_string(),
-        FileKind::Rust      => entry.name.yellow().to_string(),
-        FileKind::Toml      => entry.name.cyan().to_string(),
-        FileKind::Other     => entry.name.normal().to_string(),
+        FileKind::Markdown => entry.name.bold().green().to_string(),
+        FileKind::Pdf => entry.name.red().to_string(),
+        FileKind::Rust => entry.name.yellow().to_string(),
+        FileKind::Toml => entry.name.cyan().to_string(),
+        FileKind::Other => entry.name.normal().to_string(),
     }
 }
 
@@ -36,7 +36,11 @@ fn format_size(size: u64) -> String {
 
 /// 1件のエントリを1行の文字列として返す
 pub fn format_entry(entry: &FileEntry) -> String {
-    let recent_mark = if is_recently_modified(entry) { "★" } else { "  " };
+    let recent_mark = if is_recently_modified(entry) {
+        "★"
+    } else {
+        "  "
+    };
     let size_str = format_size(entry.size);
     let date_str = entry.modified.format("%Y-%m-%d %H:%M").to_string();
     let name_str = colorize_name(entry);
@@ -51,8 +55,8 @@ pub fn format_entries(entries: &[FileEntry]) -> Vec<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::PathBuf;
     use chrono::Local;
+    use std::path::PathBuf;
 
     fn make_entry(name: &str, kind: FileKind, size: u64) -> FileEntry {
         FileEntry {

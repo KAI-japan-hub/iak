@@ -1,9 +1,9 @@
 //! ディレクトリの読み込み処理
 
+use crate::entry::{FileEntry, FileKind};
+use chrono::{DateTime, Local};
 use std::fs;
 use std::path::Path;
-use chrono::{DateTime, Local};
-use crate::entry::{FileEntry, FileKind};
 
 /// ファイル名の拡張子からFileKindを判定する
 pub fn detect_kind(name: &str, is_dir: bool) -> FileKind {
