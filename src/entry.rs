@@ -14,6 +14,14 @@ pub enum FileKind {
     Other,
 }
 
+/// ソート順の指定
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum SortKey {
+    Name,
+    Size,
+    Mtime,
+}
+
 /// ディレクトリエントリの情報
 #[derive(Debug, Clone)]
 pub struct FileEntry {

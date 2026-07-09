@@ -14,3 +14,5 @@ path = "src/lib.rs"
 [dependencies]
 colored = "2"
 chrono = "0.4"
+clap = { version = "4.6.1", features = ["derive"] }
+clap_complete = "4.6.7"

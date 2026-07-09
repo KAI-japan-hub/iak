@@ -1,6 +1,6 @@
 //! ディレクトリの読み込み処理
 
-use crate::entry::{FileEntry, FileKind};
+use crate::entry::{FileEntry, FileKind, SortKey};
 use chrono::{DateTime, Local};
 use std::fs;
 use std::path::Path;
@@ -34,14 +34,18 @@ fn build_file_entry(dir_entry: &fs::DirEntry) -> std::io::Result<FileEntry> {
     })
 }
 
-/// ディレクトリのエントリ一覧を読み込んで名前順に返す
-pub fn read_entries(dir: &Path) -> std::io::Result<Vec<FileEntry>> {
+/// ディレクトリのエントリ一覧を読み込んで指定順に並べて返す
+pub fn read_entries(dir: &Path, sort_key: SortKey) -> std::io::Result<Vec<FileEntry>> {
     let mut entries = Vec::new();
     for dir_entry in fs::read_dir(dir)? {
         let entry = build_file_entry(&dir_entry?)?;
         entries.push(entry);
     }
-    entries.sort_by(|a, b| a.name.cmp(&b.name));
+    match sort_key {
+        SortKey::Name => entries.sort_by(|a, b| a.name.cmp(&b.name)),
+        SortKey::Size => entries.sort_by(|a, b| a.size.cmp(&b.size)),
+        SortKey::Mtime => entries.sort_by(|a, b| a.modified.cmp(&b.modified)),
+    }
     Ok(entries)
 }
 
