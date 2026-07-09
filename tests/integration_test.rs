@@ -9,20 +9,23 @@ fn default_opts() -> DisplayOptions {
     DisplayOptions {
         new_mark: false,
         humanize: true,
+        long: false,
     }
 }
 
 #[test]
 fn test_read_entries_returns_results() {
     let dir = Path::new(".");
-    let entries = reader::read_entries(dir, SortKey::Name).expect("ディレクトリの読み込みに失敗");
+    let entries =
+        reader::read_entries(dir, SortKey::Name, false, false).expect("ディレクトリの読み込みに失敗");
     assert!(!entries.is_empty());
 }
 
 #[test]
 fn test_format_entries_returns_same_count() {
     let dir = Path::new(".");
-    let entries = reader::read_entries(dir, SortKey::Name).expect("ディレクトリの読み込みに失敗");
+    let entries =
+        reader::read_entries(dir, SortKey::Name, false, false).expect("ディレクトリの読み込みに失敗");
     let lines = display::format_entries(&entries, &default_opts());
     assert_eq!(entries.len(), lines.len());
 }
@@ -30,7 +33,8 @@ fn test_format_entries_returns_same_count() {
 #[test]
 fn test_each_line_contains_filename() {
     let dir = Path::new(".");
-    let entries = reader::read_entries(dir, SortKey::Name).expect("ディレクトリの読み込みに失敗");
+    let entries =
+        reader::read_entries(dir, SortKey::Name, false, false).expect("ディレクトリの読み込みに失敗");
     let lines = display::format_entries(&entries, &default_opts());
     for (entry, line) in entries.iter().zip(lines.iter()) {
         assert!(line.contains(&entry.name));

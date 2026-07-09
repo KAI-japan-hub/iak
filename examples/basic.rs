@@ -1,4 +1,3 @@
-
 //! 基本的な使用例：カレントディレクトリのファイル一覧を表示する
 
 use iak::display::DisplayOptions;
@@ -11,8 +10,9 @@ fn main() {
     let opts = DisplayOptions {
         new_mark: true,
         humanize: true,
+        long: false,
     };
-    match reader::read_entries(dir, SortKey::Name) {
+    match reader::read_entries(dir, SortKey::Name, false, false) {
         Ok(entries) => {
             for line in display::format_entries(&entries, &opts) {
                 println!("{}", line);

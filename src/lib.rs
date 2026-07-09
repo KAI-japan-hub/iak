@@ -3,3 +3,4 @@
 pub mod display;
 pub mod entry;
 pub mod reader;
+pub mod tagline;

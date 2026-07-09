@@ -30,6 +30,10 @@ pub struct Args {
     /// If omitted, the current directory is shown.
     pub file: Option<PathBuf>,
 
+    /// Show detailed file information
+    #[arg(short = 'l', long)]
+    pub long: bool,
+
     /// Mark files created or updated within 24 hours as "new"
     #[arg(long)]
     pub new_mark: bool,
@@ -37,6 +41,14 @@ pub struct Args {
     /// Display file sizes in a human-readable format
     #[arg(long)]
     pub humanize: bool,
+
+    /// Show a summary of README.md
+    #[arg(long)]
+    pub tagline: bool,
+
+    /// Respect rules such as .gitignore
+    #[arg(long)]
+    pub respect_ignore: bool,
 
     /// Specify the sort order [name | size | mtime]
     #[arg(long, value_enum, default_value_t = SortKeyArg::Name)]

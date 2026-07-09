@@ -1,6 +1,6 @@
 //! ファイルエントリの表示処理
 
-use crate::entry::{FileEntry, FileKind};
+use crate::entry::{FileEntry, FileKind, LongInfo};
 use chrono::Local;
 use colored::Colorize;
 
@@ -11,6 +11,8 @@ pub struct DisplayOptions {
     pub new_mark: bool,
     /// ファイルサイズを人間可読な単位（K/M）で表示するか
     pub humanize: bool,
+    /// 詳細情報（パーミッション・リンク数・UID/GID）を表示するか
+    pub long: bool,
 }
 
 /// FileKindに応じた色付きのファイル名文字列を返す
@@ -56,6 +58,29 @@ fn format_size(size: u64, humanize: bool) -> String {
     }
 }
 
+/// パーミッションのモードビットを rwxr-xr-x 形式の文字列に変換する
+fn format_mode(mode: u32) -> String {
+    let bits = [
+        (0o400, 'r'), (0o200, 'w'), (0o100, 'x'),
+        (0o040, 'r'), (0o020, 'w'), (0o010, 'x'),
+        (0o004, 'r'), (0o002, 'w'), (0o001, 'x'),
+    ];
+    bits.iter()
+        .map(|(bit, ch)| if mode & bit != 0 { *ch } else { '-' })
+        .collect()
+}
+
+/// -l/--long 指定時の詳細情報部分を整形する
+fn format_long_info(info: &LongInfo) -> String {
+    format!(
+        "{} {:>3} {:>5}:{:<5}",
+        format_mode(info.mode),
+        info.nlink,
+        info.uid,
+        info.gid
+    )
+}
+
 /// 1件のエントリを1行の文字列として返す
 pub fn format_entry(entry: &FileEntry, opts: &DisplayOptions) -> String {
     let recent_mark = if opts.new_mark && is_recently_modified(entry) {
@@ -66,6 +91,16 @@ pub fn format_entry(entry: &FileEntry, opts: &DisplayOptions) -> String {
     let size_str = format_size(entry.size, opts.humanize);
     let date_str = entry.modified.format("%Y-%m-%d %H:%M").to_string();
     let name_str = colorize_name(entry);
+
+    if opts.long {
+        if let Some(info) = &entry.long_info {
+            let long_str = format_long_info(info);
+            return format!(
+                "{} {} {} {}  {}",
+                recent_mark, long_str, size_str, date_str, name_str
+            );
+        }
+    }
     format!("{} {} {}  {}", recent_mark, size_str, date_str, name_str)
 }
 
@@ -87,6 +122,7 @@ mod tests {
             kind,
             size,
             modified: Local::now(),
+            long_info: None,
         }
     }
 
@@ -94,6 +130,7 @@ mod tests {
         DisplayOptions {
             new_mark: false,
             humanize: true,
+            long: false,
         }
     }
 
@@ -141,6 +178,7 @@ mod tests {
         let opts = DisplayOptions {
             new_mark: false,
             humanize: false,
+            long: false,
         };
         let result = format_entry(&entry, &opts);
         assert!(result.contains("2048B"));
@@ -152,8 +190,38 @@ mod tests {
         let opts = DisplayOptions {
             new_mark: false,
             humanize: true,
+            long: false,
         };
         let result = format_entry(&entry, &opts);
         assert!(!result.contains('★'));
+    }
+
+    #[test]
+    fn test_format_mode_rwxr_xr_x() {
+        assert_eq!(format_mode(0o755), "rwxr-xr-x");
+    }
+
+    #[test]
+    fn test_format_mode_rw_r_r() {
+        assert_eq!(format_mode(0o644), "rw-r--r--");
+    }
+
+    #[test]
+    fn test_long_info_included_when_present() {
+        let mut entry = make_entry("file.txt", FileKind::Other, 100);
+        entry.long_info = Some(LongInfo {
+            mode: 0o644,
+            nlink: 1,
+            uid: 501,
+            gid: 20,
+        });
+        let opts = DisplayOptions {
+            new_mark: false,
+            humanize: true,
+            long: true,
+        };
+        let result = format_entry(&entry, &opts);
+        assert!(result.contains("rw-r--r--"));
+        assert!(result.contains("501"));
     }
 }
