@@ -46,6 +46,10 @@ pub struct Args {
     #[arg(long)]
     pub tagline: bool,
 
+    /// Show the title inside a PDF file
+    #[arg(long)]
+    pub pdf_title: bool,
+
     /// Respect rules such as .gitignore
     #[arg(long)]
     pub respect_ignore: bool,

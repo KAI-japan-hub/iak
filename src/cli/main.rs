@@ -5,7 +5,7 @@ mod gencomp;
 
 use args::Args;
 use clap::Parser;
-use iak::{display, reader, tagline};
+use iak::{display, pdf_title, reader, tagline};
 use std::path::{Path, PathBuf};
 
 fn main() {
@@ -25,6 +25,14 @@ fn main() {
         match tagline::extract_tagline(&dir) {
             Some(line) => println!("{}", line),
             None => eprintln!("Error: README.md not found or has no summary line"),
+        }
+        return;
+    }
+
+    if args.pdf_title {
+        match pdf_title::extract_pdf_title(&dir) {
+            Some(title) => println!("{}", title),
+            None => eprintln!("Error: could not read PDF title from {}", dir.display()),
         }
         return;
     }
