@@ -9,30 +9,27 @@ https://github.com/alex-shpak/hugo-book
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="iak# A color-coded ls for clearer file display.
-iak は ls コマンドを再設計し、ファイルの種類を色分け表示することで、 ディレクトリの中身を一目で把握できるようにした Rust 製のコマンドラインツールです。
-たくさんのファイルが並んでいると、どれがディレクトリでどれが設定ファイルか、 パッと見て分かりにくいことがあります。iak はその課題を解決します。
-使い方を見る · GitHubリポジトリ
+<meta name="description" content="iak# iak は、ls コマンドをより見やすくしたファイル一覧表示ツールです。 ファイルの種類ごとに色分けして表示し、用途に応じた並べ替えや詳細情報の表示を簡単に切り替えられます。
+主な特徴# ファイルの種類（ディレクトリ／Markdown／PDF／Rust／TOMLなど）ごとに色分けして表示 名前・サイズ・更新日時でソート順を切り替え可能 -l オプションでパーミッションやリンク数などの詳細情報を表示 --new-mark で24時間以内に更新されたファイルに★マークを表示 --tagline / --pdf-title でREADMEやPDFの中身を直接抽出して表示 .gitignore を尊重してファイルを除外する --respect-ignore bash / zsh / fish / elvish / PowerShell 向けの補完ファイルを自動生成 使い方# iak [OPTIONS] [FILE]FILE を指定しない場合は、現在のディレクトリの内容を表示します。
+オプション# --sort &lt;key&gt; : name / size / mtime の順で並べ替えて表示します。 -l, --long : パーミッション・リンク数・所有者情報を表示します。 --humanize : ファイルサイズをK/M単位の読みやすい形式で表示します。 --new-mark : 24時間以内に更新されたファイルに★を付けます。 --respect-ignore : .gitignore のルールを尊重して表示から除外します。 こんな人におすすめ# ls の表示をもっと見やすくしたい人 ファイル一覧をサイズや更新日で並べ替えたい人 READMEやPDFの中身をコマンドラインからサッと確認したい人 例# iak --sort size iak -l --new-mark /path/to/directory iak --tagline詳しい使い方を見る · GitHubリポジトリ
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://kai-japan-hub.github.io/iak/">
 	<meta property="og:site_name" content="iak">
 	<meta property="og:title" content="iak">
-	<meta property="og:description" content="iak# A color-coded ls for clearer file display.
-iak は ls コマンドを再設計し、ファイルの種類を色分け表示することで、 ディレクトリの中身を一目で把握できるようにした Rust 製のコマンドラインツールです。
-たくさんのファイルが並んでいると、どれがディレクトリでどれが設定ファイルか、 パッと見て分かりにくいことがあります。iak はその課題を解決します。
-使い方を見る · GitHubリポジトリ">
+	<meta property="og:description" content="iak# iak は、ls コマンドをより見やすくしたファイル一覧表示ツールです。 ファイルの種類ごとに色分けして表示し、用途に応じた並べ替えや詳細情報の表示を簡単に切り替えられます。
+主な特徴# ファイルの種類（ディレクトリ／Markdown／PDF／Rust／TOMLなど）ごとに色分けして表示 名前・サイズ・更新日時でソート順を切り替え可能 -l オプションでパーミッションやリンク数などの詳細情報を表示 --new-mark で24時間以内に更新されたファイルに★マークを表示 --tagline / --pdf-title でREADMEやPDFの中身を直接抽出して表示 .gitignore を尊重してファイルを除外する --respect-ignore bash / zsh / fish / elvish / PowerShell 向けの補完ファイルを自動生成 使い方# iak [OPTIONS] [FILE]FILE を指定しない場合は、現在のディレクトリの内容を表示します。
+オプション# --sort &lt;key&gt; : name / size / mtime の順で並べ替えて表示します。 -l, --long : パーミッション・リンク数・所有者情報を表示します。 --humanize : ファイルサイズをK/M単位の読みやすい形式で表示します。 --new-mark : 24時間以内に更新されたファイルに★を付けます。 --respect-ignore : .gitignore のルールを尊重して表示から除外します。 こんな人におすすめ# ls の表示をもっと見やすくしたい人 ファイル一覧をサイズや更新日で並べ替えたい人 READMEやPDFの中身をコマンドラインからサッと確認したい人 例# iak --sort size iak -l --new-mark /path/to/directory iak --tagline詳しい使い方を見る · GitHubリポジトリ">
 	<meta property="og:locale" content="ja">
 	<meta property="og:type" content="website">
 
 
 	<meta itemprop="name" content="iak">
-	<meta itemprop="description" content="iak# A color-coded ls for clearer file display.
-iak は ls コマンドを再設計し、ファイルの種類を色分け表示することで、 ディレクトリの中身を一目で把握できるようにした Rust 製のコマンドラインツールです。
-たくさんのファイルが並んでいると、どれがディレクトリでどれが設定ファイルか、 パッと見て分かりにくいことがあります。iak はその課題を解決します。
-使い方を見る · GitHubリポジトリ">
-	<meta itemprop="wordCount" content="21">
+	<meta itemprop="description" content="iak# iak は、ls コマンドをより見やすくしたファイル一覧表示ツールです。 ファイルの種類ごとに色分けして表示し、用途に応じた並べ替えや詳細情報の表示を簡単に切り替えられます。
+主な特徴# ファイルの種類（ディレクトリ／Markdown／PDF／Rust／TOMLなど）ごとに色分けして表示 名前・サイズ・更新日時でソート順を切り替え可能 -l オプションでパーミッションやリンク数などの詳細情報を表示 --new-mark で24時間以内に更新されたファイルに★マークを表示 --tagline / --pdf-title でREADMEやPDFの中身を直接抽出して表示 .gitignore を尊重してファイルを除外する --respect-ignore bash / zsh / fish / elvish / PowerShell 向けの補完ファイルを自動生成 使い方# iak [OPTIONS] [FILE]FILE を指定しない場合は、現在のディレクトリの内容を表示します。
+オプション# --sort &lt;key&gt; : name / size / mtime の順で並べ替えて表示します。 -l, --long : パーミッション・リンク数・所有者情報を表示します。 --humanize : ファイルサイズをK/M単位の読みやすい形式で表示します。 --new-mark : 24時間以内に更新されたファイルに★を付けます。 --respect-ignore : .gitignore のルールを尊重して表示から除外します。 こんな人におすすめ# ls の表示をもっと見やすくしたい人 ファイル一覧をサイズや更新日で並べ替えたい人 READMEやPDFの中身をコマンドラインからサッと確認したい人 例# iak --sort size iak -l --new-mark /path/to/directory iak --tagline詳しい使い方を見る · GitHubリポジトリ">
+	<meta itemprop="wordCount" content="75">
 
 <title>iak • iak</title>
 <link rel="icon" href="/iak/favicon.png" >
@@ -172,7 +169,15 @@ iak は ls コマンドを再設計し、ファイルの種類を色分け表示
   <aside class="hidden">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#主な特徴">主な特徴</a></li>
+    <li><a href="#使い方">使い方</a></li>
+    <li><a href="#オプション">オプション</a></li>
+    <li><a href="#こんな人におすすめ">こんな人におすすめ</a></li>
+    <li><a href="#例">例</a></li>
+  </ul>
+</nav>
 
 
 
@@ -184,12 +189,38 @@ iak は ls コマンドを再設計し、ファイルの種類を色分け表示
       
       
   <article class="markdown book-article"><h1 id="iak">iak<a class="anchor" href="#iak">#</a></h1>
-<p><strong>A color-coded ls for clearer file display.</strong></p>
-<p><code>iak</code> は <code>ls</code> コマンドを再設計し、ファイルの種類を色分け表示することで、
-ディレクトリの中身を一目で把握できるようにした Rust 製のコマンドラインツールです。</p>
-<p>たくさんのファイルが並んでいると、どれがディレクトリでどれが設定ファイルか、
-パッと見て分かりにくいことがあります。<code>iak</code> はその課題を解決します。</p>
-<p><a href="/iak/docs/usage/">使い方を見る</a> · <a href="https://github.com/KAI-japan-hub/iak">GitHubリポジトリ</a></p>
+<p>iak は、<code>ls</code> コマンドをより見やすくしたファイル一覧表示ツールです。
+ファイルの種類ごとに色分けして表示し、用途に応じた並べ替えや詳細情報の表示を簡単に切り替えられます。</p>
+<h2 id="主な特徴">主な特徴<a class="anchor" href="#%e4%b8%bb%e3%81%aa%e7%89%b9%e5%be%b4">#</a></h2>
+<ul>
+<li>ファイルの種類（ディレクトリ／Markdown／PDF／Rust／TOMLなど）ごとに色分けして表示</li>
+<li>名前・サイズ・更新日時でソート順を切り替え可能</li>
+<li><code>-l</code> オプションでパーミッションやリンク数などの詳細情報を表示</li>
+<li><code>--new-mark</code> で24時間以内に更新されたファイルに★マークを表示</li>
+<li><code>--tagline</code> / <code>--pdf-title</code> でREADMEやPDFの中身を直接抽出して表示</li>
+<li><code>.gitignore</code> を尊重してファイルを除外する <code>--respect-ignore</code></li>
+<li>bash / zsh / fish / elvish / PowerShell 向けの補完ファイルを自動生成</li>
+</ul>
+<h2 id="使い方">使い方<a class="anchor" href="#%e4%bd%bf%e3%81%84%e6%96%b9">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iak <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>FILE<span style="color:#f92672">]</span></span></span></code></pre></div><p><code>FILE</code> を指定しない場合は、現在のディレクトリの内容を表示します。</p>
+<h2 id="オプション">オプション<a class="anchor" href="#%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3">#</a></h2>
+<ul>
+<li><code>--sort &lt;key&gt;</code> : <code>name</code> / <code>size</code> / <code>mtime</code> の順で並べ替えて表示します。</li>
+<li><code>-l</code>, <code>--long</code> : パーミッション・リンク数・所有者情報を表示します。</li>
+<li><code>--humanize</code> : ファイルサイズをK/M単位の読みやすい形式で表示します。</li>
+<li><code>--new-mark</code> : 24時間以内に更新されたファイルに★を付けます。</li>
+<li><code>--respect-ignore</code> : <code>.gitignore</code> のルールを尊重して表示から除外します。</li>
+</ul>
+<h2 id="こんな人におすすめ">こんな人におすすめ<a class="anchor" href="#%e3%81%93%e3%82%93%e3%81%aa%e4%ba%ba%e3%81%ab%e3%81%8a%e3%81%99%e3%81%99%e3%82%81">#</a></h2>
+<ul>
+<li><code>ls</code> の表示をもっと見やすくしたい人</li>
+<li>ファイル一覧をサイズや更新日で並べ替えたい人</li>
+<li>READMEやPDFの中身をコマンドラインからサッと確認したい人</li>
+</ul>
+<h2 id="例">例<a class="anchor" href="#%e4%be%8b">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iak --sort size
+</span></span><span style="display:flex;"><span>iak -l --new-mark /path/to/directory
+</span></span><span style="display:flex;"><span>iak --tagline</span></span></code></pre></div><p><a href="/iak/docs/usage/">詳しい使い方を見る</a> · <a href="https://github.com/KAI-japan-hub/iak">GitHubリポジトリ</a></p>
 </article>
  
       
@@ -238,7 +269,15 @@ iak は ls コマンドを再設計し、ファイルの種類を色分け表示
     <div class="book-toc-content">
       
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#主な特徴">主な特徴</a></li>
+    <li><a href="#使い方">使い方</a></li>
+    <li><a href="#オプション">オプション</a></li>
+    <li><a href="#こんな人におすすめ">こんな人におすすめ</a></li>
+    <li><a href="#例">例</a></li>
+  </ul>
+</nav>
 
 
 
