@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="使い方# 基本の使い方# 引数を指定しない場合、カレントディレクトリの中身を一覧表示します。
+iakパスを指定すると、そのディレクトリ（またはファイル）を対象にします。
+iak ~/Documentsよく使うオプション# オプション 説明 -l, --long パーミッション・リンク数・所有者情報などの詳細を表示 --sort &lt;key&gt; name / size / mtime でソート順を指定 --humanize ファイルサイズを K / M 単位の読みやすい形式で表示 --new-mark 24時間以内に更新されたファイルに ★ マークを付ける --tagline 対象ディレクトリの README.md から概要を抽出して表示 --pdf-title 対象の PDF ファイルからタイトルを抽出して表示 --respect-ignore .gitignore のルールを尊重してファイルを除外 実行例# $ iak --sort size 1B 2026-07-09 14:12 testdata 19B 2026-07-09 14:12 .gitignore 96B 2026-07-09 14:12 tests 256B 2026-07-09 14:12 src$ iak --tagline A color-coded ls for clearer file display.シェル補完# bash / zsh / fish / elvish / PowerShell 向けの補完スクリプトを生成できます。
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://kai-japan-hub.github.io/iak/docs/usage/">
+	<meta property="og:site_name" content="iak">
+	<meta property="og:title" content="使い方">
+	<meta property="og:description" content="使い方# 基本の使い方# 引数を指定しない場合、カレントディレクトリの中身を一覧表示します。
+iakパスを指定すると、そのディレクトリ（またはファイル）を対象にします。
+iak ~/Documentsよく使うオプション# オプション 説明 -l, --long パーミッション・リンク数・所有者情報などの詳細を表示 --sort &lt;key&gt; name / size / mtime でソート順を指定 --humanize ファイルサイズを K / M 単位の読みやすい形式で表示 --new-mark 24時間以内に更新されたファイルに ★ マークを付ける --tagline 対象ディレクトリの README.md から概要を抽出して表示 --pdf-title 対象の PDF ファイルからタイトルを抽出して表示 --respect-ignore .gitignore のルールを尊重してファイルを除外 実行例# $ iak --sort size 1B 2026-07-09 14:12 testdata 19B 2026-07-09 14:12 .gitignore 96B 2026-07-09 14:12 tests 256B 2026-07-09 14:12 src$ iak --tagline A color-coded ls for clearer file display.シェル補完# bash / zsh / fish / elvish / PowerShell 向けの補完スクリプトを生成できます。">
+	<meta property="og:locale" content="ja">
+	<meta property="og:type" content="website">
+
+
+	<meta itemprop="name" content="使い方">
+	<meta itemprop="description" content="使い方# 基本の使い方# 引数を指定しない場合、カレントディレクトリの中身を一覧表示します。
+iakパスを指定すると、そのディレクトリ（またはファイル）を対象にします。
+iak ~/Documentsよく使うオプション# オプション 説明 -l, --long パーミッション・リンク数・所有者情報などの詳細を表示 --sort &lt;key&gt; name / size / mtime でソート順を指定 --humanize ファイルサイズを K / M 単位の読みやすい形式で表示 --new-mark 24時間以内に更新されたファイルに ★ マークを付ける --tagline 対象ディレクトリの README.md から概要を抽出して表示 --pdf-title 対象の PDF ファイルからタイトルを抽出して表示 --respect-ignore .gitignore のルールを尊重してファイルを除外 実行例# $ iak --sort size 1B 2026-07-09 14:12 testdata 19B 2026-07-09 14:12 .gitignore 96B 2026-07-09 14:12 tests 256B 2026-07-09 14:12 src$ iak --tagline A color-coded ls for clearer file display.シェル補完# bash / zsh / fish / elvish / PowerShell 向けの補完スクリプトを生成できます。">
+	<meta itemprop="wordCount" content="83">
+
+<title>使い方 • iak</title>
+<link rel="icon" href="/iak/favicon.png" >
+<link rel="manifest" href="/iak/manifest.json">
+<link rel="canonical" href="https://kai-japan-hub.github.io/iak/docs/usage/">
+<link rel="stylesheet" href="/iak/book.min.64ab3279514b7f9a7b1ec50a47d8bc6f9bed31454a6363d9f98214862cb1a617.css" integrity="sha256-ZKsyeVFLf5p7HsUKR9i8b5vtMUVKY2PZ&#43;YIUhiyxphc=" crossorigin="anonymous">
+
+
+  <script defer type="module" src="/iak/en.search.min.a758ae9fcbed438e75c7441aada71825c2d19967956fa34bd8ad7f6e48ab9dbf.js" integrity="sha256-p1iun8vtQ451x0QaracYJcLRmWeVb6NL2K1/bkirnb8=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://kai-japan-hub.github.io/iak/docs/usage/index.xml" title="使い方" />
+
+  
+</head>
+<body dir="ltr" class="book-kind-section book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/iak/"><span>iak</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="検索"
+    aria-label="検索"
+    maxlength="64" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/iak/docs/installation/" class="">
+      インストール</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/iak/docs/usage/" class="active">
+      使い方</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="https://github.com/KAI-japan-hub/iak" target="_blank" rel="noopener">GitHub</a></li></ul>
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/iak/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>使い方</h3>
+
+  <label for="toc-control">
+    
+    <img src="/iak/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本の使い方">基本の使い方</a></li>
+    <li><a href="#よく使うオプション">よく使うオプション</a></li>
+    <li><a href="#実行例">実行例</a></li>
+    <li><a href="#シェル補完">シェル補完</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="使い方">使い方<a class="anchor" href="#%e4%bd%bf%e3%81%84%e6%96%b9">#</a></h1>
+<h2 id="基本の使い方">基本の使い方<a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9">#</a></h2>
+<p>引数を指定しない場合、カレントディレクトリの中身を一覧表示します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iak</span></span></code></pre></div><p>パスを指定すると、そのディレクトリ（またはファイル）を対象にします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iak ~/Documents</span></span></code></pre></div><h2 id="よく使うオプション">よく使うオプション<a class="anchor" href="#%e3%82%88%e3%81%8f%e4%bd%bf%e3%81%86%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>オプション</th>
+					<th>説明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>-l</code>, <code>--long</code></td>
+					<td>パーミッション・リンク数・所有者情報などの詳細を表示</td>
+			</tr>
+			<tr>
+					<td><code>--sort &lt;key&gt;</code></td>
+					<td><code>name</code> / <code>size</code> / <code>mtime</code> でソート順を指定</td>
+			</tr>
+			<tr>
+					<td><code>--humanize</code></td>
+					<td>ファイルサイズを K / M 単位の読みやすい形式で表示</td>
+			</tr>
+			<tr>
+					<td><code>--new-mark</code></td>
+					<td>24時間以内に更新されたファイルに ★ マークを付ける</td>
+			</tr>
+			<tr>
+					<td><code>--tagline</code></td>
+					<td>対象ディレクトリの README.md から概要を抽出して表示</td>
+			</tr>
+			<tr>
+					<td><code>--pdf-title</code></td>
+					<td>対象の PDF ファイルからタイトルを抽出して表示</td>
+			</tr>
+			<tr>
+					<td><code>--respect-ignore</code></td>
+					<td><code>.gitignore</code> のルールを尊重してファイルを除外</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="実行例">実行例<a class="anchor" href="#%e5%ae%9f%e8%a1%8c%e4%be%8b">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ iak --sort size
+</span></span><span style="display:flex;"><span>         1B 2026-07-09 14:12  testdata
+</span></span><span style="display:flex;"><span>        19B 2026-07-09 14:12  .gitignore
+</span></span><span style="display:flex;"><span>        96B 2026-07-09 14:12  tests
+</span></span><span style="display:flex;"><span>       256B 2026-07-09 14:12  src</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ iak --tagline
+</span></span><span style="display:flex;"><span>A color-coded ls <span style="color:#66d9ef">for</span> clearer file display.</span></span></code></pre></div><h2 id="シェル補完">シェル補完<a class="anchor" href="#%e3%82%b7%e3%82%a7%e3%83%ab%e8%a3%9c%e5%ae%8c">#</a></h2>
+<p>bash / zsh / fish / elvish / PowerShell 向けの補完スクリプトを生成できます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iak --completions ./completions</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+<div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/iak/docs/installation/" class="flex align-center">
+        <img src="/iak/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>インストール</span>
+      </a>
+    
+    </span>
+    <span>
+    
+    </span>
+  </div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本の使い方">基本の使い方</a></li>
+    <li><a href="#よく使うオプション">よく使うオプション</a></li>
+    <li><a href="#実行例">実行例</a></li>
+    <li><a href="#シェル補完">シェル補完</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
